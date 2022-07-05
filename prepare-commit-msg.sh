@@ -37,6 +37,6 @@ else
   echo -e "${GREEN}dev, hotfix, bugfix, release, dev, improvement, hotfix-102\n"
   echo -e "${ORANGE}You cannot push in these branches directly: ${BRANCHES_TO_SKIP[@]}\n"
   echo -e "${ORANGE}Current BRANCH_NAME: ${BRANCH_NAME}"
-  echo -e "\n${RED}Oh, please stop. I cannot allow you to commit with your current branch: ${BRANCH_NAME}${NOCOLOR}"
+  echo -e "\n${RED}I cannot allow you to commit with your current branch: ${BRANCH_NAME}${NOCOLOR}"
   exit 1;
 fi
