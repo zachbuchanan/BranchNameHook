@@ -1,9 +1,23 @@
 #!/bin/sh
-branchPath=$(git symbolic-ref -q HEAD) #Somthing like refs/heads/myBranchName
-branchName=${branchPath##*/}      #Get text behind the last / of the branch path
 
-firstLine=$(head -n1 $1)
+BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
 
-if [ -z "$firstLine"  ] ;then #Check that this is not an amend by checking that the first line is empty
-    sed -i "1s/^/[$branchName]: \n/" $1 #Insert branch name at the start of the commit message file
+# Ensure BRANCH_NAME is not empty and is not in a detached HEAD state (i.e. rebase).
+# SKIP_PREPARE_COMMIT_MSG may be used as an escape hatch to disable this hook,
+# while still allowing other githooks to run.
+if [ ! -z "$BRANCH_NAME" ] && [ "$BRANCH_NAME" != "HEAD" ] && [ "$SKIP_PREPARE_COMMIT_MSG" != 1 ]; then
+
+  PREFIX_PATTERN='[A-Z]{2,5}-[0-9]{1,4}'
+
+  [[ $BRANCH_NAME =~ $PREFIX_PATTERN ]]
+
+  PREFIX=${BASH_REMATCH[0]}
+
+  PREFIX_IN_COMMIT=$(grep -c "\[$PREFIX\]" $1)
+
+  # Ensure PREFIX exists in BRANCH_NAME and is not already present in the commit message
+  if [[ -n "$PREFIX" ]] && ! [[ $PREFIX_IN_COMMIT -ge 1 ]]; then
+    sed -i.bak -e "1s~^~[$PREFIX] ~" $1
+  fi
+
 fi
