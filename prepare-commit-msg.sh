@@ -5,7 +5,7 @@ BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
 # Ensure BRANCH_NAME is not empty and is not in a detached HEAD state (i.e. rebase).
 # SKIP_PREPARE_COMMIT_MSG may be used as an escape hatch to disable this hook,
 # while still allowing other githooks to run.
-#test
+
 if [ ! -z "$BRANCH_NAME" ] && [ "$BRANCH_NAME" != "HEAD" ] && [ "$SKIP_PREPARE_COMMIT_MSG" != 1 ]; then
 
   PREFIX_PATTERN='[A-Z]{2,5}-[0-9]{1,4}'
@@ -18,7 +18,7 @@ if [ ! -z "$BRANCH_NAME" ] && [ "$BRANCH_NAME" != "HEAD" ] && [ "$SKIP_PREPARE_C
 
   # Ensure PREFIX exists in BRANCH_NAME and is not already present in the commit message
   if [[ -n "$PREFIX" ]] && ! [[ $PREFIX_IN_COMMIT -ge 1 ]]; then
-    sed -i.bak -e "1s~^~[$PREFIX] ~" $1
+    sed -i.bak -e "1s/^/[$PREFIX] ~" $1
   fi
 
 fi
