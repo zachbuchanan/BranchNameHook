@@ -1,7 +1,6 @@
 #!/bin/sh
 
-# This way you can customize which branches should be skipped when
-# prepending commit message.
+# This way you can customize which branches should be skipped when prepending commit message.
 RED="\033[1;31m"
 GREEN="\033[1;32m"
 ORANGE="\033[0;33m"
