@@ -14,7 +14,7 @@ fi
 AUTHORINFO=$(git var GIT_AUTHOR_IDENT) || exit 1
 NAME=$(printf '%s\n\n' "${AUTHORINFO}" | sed -n 's/^\(.*\) <.*$/\1/p')
 # Regex to check the valid branch name
-VALID_BRANCH_REGEX="(^(feature|hotfix|bugfix|release|dev|improvement|TICKET))|^([A-Z]+\-[0-9]+)$"
+VALID_BRANCH_REGEX="(^(feature|hotfix|bugfix|release|dev|improvement))|^([A-Z]+\-[0-9]+)$"
 
 # Get branch name and description
 BRANCH_NAME=$(git branch | grep '*' | sed 's/* //')
