@@ -2,8 +2,13 @@
 
 ***Example***
 
-Branch named **EM-26530**
+Branch: **EM-26530**
 
-Commit message **"Added some new tests"**
+git commit -m **"Added some new tests"**
 
 After hook runs, the commit message will be saved as **"[EM-26530] Added some new tests"**
+
+## Rules
+Branch name must be in regex pattern **([A-Z]+\-[0-9]+)**
+
+You can instruct scrip to skip the insert by adding the branch to skip into the BRANCHES_TO_SKIP variable and the VALID_BRANCH_REGEX variable 
