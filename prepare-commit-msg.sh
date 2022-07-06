@@ -13,10 +13,9 @@ VALID_BRANCH_REGEX="^(develop)|^([A-Za-z]+\-[0-9]+)|^()$"
 
 # Get branch name and description
 BRANCH_NAME=$(git branch | grep '*' | sed 's/* //')
-echo -e "branch name: ${BRANCH_NAME}\n"
+
 # Check to see if rebasing
 REBASE=$(git branch | grep 'rebasing' | sed 's/* //')
-echo -e "rebase: ${REBASE}\n"
 
 # A developer has already added the branch name to the commit message
 BRANCH_IN_COMMIT=$(grep -c "$BRANCH_NAME" $1)
