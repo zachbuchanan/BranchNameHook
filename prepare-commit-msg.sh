@@ -10,6 +10,7 @@ VALID_BRANCH_REGEX="^(develop)|^([A-Za-z]+\-[0-9]+)|^()$"
 
 # Get branch name and description
 BRANCH_NAME=$(git branch | grep '*' | sed 's/* //')
+BRANCH_NAME=$(echo $BRANCH_NAME | cut --complement -d _ -f 2)
 
 # Check to see if rebasing (branch will show as "(no branch, rebasing <branch_name>)")
 # so we want to ignore this case
