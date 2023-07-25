@@ -11,4 +11,4 @@ After hook runs, the commit message will be saved as **"[EM-26530] Added some ne
 ## Rules
 Branch name must be in regex pattern **([A-Z]+\-[0-9]+)**
 
-You can instruct scrip to skip the insert by adding the branch to skip into the BRANCHES_TO_SKIP variable and the VALID_BRANCH_REGEX variable 
+You can instruct script to skip the insert by adding the branch to skip into the BRANCHES_TO_SKIP variable and the VALID_BRANCH_REGEX variable 
